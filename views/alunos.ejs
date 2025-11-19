@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Alunos</title>
+    <style>
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .btn { padding: 8px 15px; margin: 5px; text-decoration: none; border-radius: 4px; }
+        .btn-editar { background-color: #28a745; color: white; }
+        .btn-excluir { background-color: #dc3545; color: white; border: none; cursor: pointer; }
+        .btn-novo { background-color: #00eeff; color: white; padding: 10px 20px; }
+    </style>
+</head>
+<body>
+    <h1> Gerenciar Alunos</h1>
+    <a href="/" style="margin-right: 20px;">← Voltar</a>
+    <a href="/alunos/novo" class="btn btn-novo">+ Novo Aluno</a>
+ 
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Matrícula</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% alunos.forEach(aluno => { %>
+                <tr>
+                    <td><%= aluno.nome %></td>
+                    <td><%= aluno.matricula %></td>
+                    <td>
+                        <a href="/alunos/editar/<%= aluno.id %>" class="btn btn-editar">Editar</a>
+                        <form action="/alunos/excluir/<%= aluno.id %>" method="POST" style="display:inline;">
+                            <button type="submit" class="btn btn-excluir" onclick="return confirm('Tem certeza?')">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    
+    <% if (alunos.length === 0) { %>
+        <p>Nenhum aluno foi cadastrado.</p>
+    <% } %>
+</body>
+</html>

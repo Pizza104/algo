@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= id ? 'Editar' : 'Novo' %> Aluno</title>
+    <style>
+        form { max-width: 500px; margin: 20px 0; }
+        label { display: block; margin: 10px 0 5px; }
+        input { width: 100%; padding: 8px; margin-bottom: 15px; }
+        button { padding: 10px 20px; background-color: #007bff; color: white; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1><%= id ? 'Editar' : 'Novo' %> Aluno</h1>
+    <a href="/alunos">← Voltar para lista</a>
+ 
+    <form action="/alunos/salvar" method="POST">
+        <% if (id) { %>
+            <input type="hidden" name="id" value="<%= id %>">
+        <% } %>
+        
+        <label>Nome do Aluno:</label>
+        <input type="text" name="nome" value="<%= aluno ? aluno.nome : '' %>" required>
+        
+        <label>Matrícula:</label>
+        <input type="text" name="matricula" value="<%= aluno ? aluno.matricula : '' %>" required>
+        
+        <button type="submit">Salvar</button>
+    </form>
+</body>
+</html>

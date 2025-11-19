@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= id ? 'Editar' : 'Novo' %> Curso</title>
+    <style>
+        form { max-width: 500px; margin: 20px 0; }
+        label { display: block; margin: 10px 0 5px; }
+        input { width: 100%; padding: 8px; margin-bottom: 15px; }
+        button { padding: 10px 20px; background-color: #007bff; color: white; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1><%= id ? 'Editar' : 'Novo' %> Curso</h1>
+    <a href="/cursos"> Voltar </a>
+ 
+    <form action="/cursos/salvar" method="POST">
+        <% if (id) { %>
+            <input type="hidden" name="id" value="<%= id %>">
+        <% } %>
+        
+        <label>Nome do Curso:</label>
+        <input type="text" name="nome" value="<%= curso ? curso.nome : '' %>" required>
+        
+        <label>Duração:</label>
+        <input type="text" name="duracao" value="<%= curso ? curso.duracao : '' %>" placeholder="Ex: 4 semestres" required>
+        
+        <button type="submit">Salvar</button>
+    </form>
+</body>
+</html>
